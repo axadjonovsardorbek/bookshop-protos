@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+option go_package = "genproto/books";
+
+package books;
+
+import "common2.proto";
+
+service TranslatorsService{
+    rpc Create(TranslatorsRes) returns(Void);
+    rpc GetById(ById) returns(TranslatorsGetByIdRes);
+    rpc GetAll(TranslatorsGetAllReq) returns(TranslatorsGetAllRes);
+    rpc Update(TranslatorsUpdateReq) returns(Void);
+    rpc Delete(ById) returns(Void);
+}
+
+message TranslatorsRes{
+    string id = 1;
+    string name = 2;
+    string surname = 3;
+}
+
+message TranslatorsCreateReq{
+    string name = 1;
+    string surname = 2;
+}
+
+message TranslatorsGetByIdRes{
+    TranslatorsRes translators = 1;
+}
+
+message TranslatorsGetAllRes{
+    repeated TranslatorsRes translators = 1;
+}
+
+message TranslatorsUpdateReq{
+    TranslatorsRes translator = 1;
+}
+
+message TranslatorsGetAllReq{
+    string name = 1;
+    string surname = 2;
+    Filter page = 3;
+}
