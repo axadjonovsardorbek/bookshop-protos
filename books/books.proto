@@ -5,10 +5,15 @@ option go_package = "genproto/books";
 package books;
 
 import "common2.proto";
+import "publishers.proto";
+import "categories.proto";
+import "translators.proto";
+import "authors.proto";
+import "languages.proto";
 
 service BooksService{
-    rpc Create(BooksRes) returns(Void);
-    rpc GetById(ById) returns(BooksGetByIdRes);
+    rpc Create(BooksCreateReq) returns(Void);
+    rpc GetById(ById) returns(BooksRes);
     rpc GetAll(BooksGetAllReq) returns(BooksGetAllRes);
     rpc Update(BooksUpdateReq) returns(Void);
     rpc Delete(ById) returns(Void);
@@ -16,12 +21,12 @@ service BooksService{
 
 message BooksRes{
     string id = 1;
-    string provider_id = 2;
-    string publisher_id = 3;
-    string category_id = 4;
-    string translator_id = 5;
-    string author_id = 6;
-    string language_id = 7;
+    UsersRes provider = 2;
+    PublishersRes publisher = 3;
+    CategoriesRes category = 4;
+    TranslatorsRes translator = 5;
+    AuthorsRes author = 6;
+    LanguagesRes language = 7;
     string title = 8;
     string description = 9;
     string published_year = 10;
@@ -51,16 +56,13 @@ message BooksCreateReq{
     int64 view_count = 15;
 }
 
-message BooksGetByIdRes{
-    BooksRes books = 1;
-}
-
 message BooksGetAllRes{
     repeated BooksRes books = 1;
 }
 
 message BooksUpdateReq{
-    BooksRes book = 1;
+    BooksCreateReq book = 1;
+    string id = 2;
 }
 
 message BooksGetAllReq{

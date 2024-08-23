@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+option go_package = "genproto/books";
+
+package books;
+
+import "common2.proto";
+import "publishers.proto";
+
+service VacanciesService{
+    rpc Create(VacanciesCreateReq) returns(Void);
+    rpc GetById(ById) returns(VacanciesRes);
+    rpc GetAll(VacanciesGetAllReq) returns(VacanciesGetAllRes);
+    rpc Update(VacanciesUpdateReq) returns(Void);
+    rpc Delete(ById) returns(Void);
+}
+
+message VacanciesRes{
+    string id = 1;
+    PublishersRes publisher = 2;
+    string title = 3;
+    string description = 4;
+    string status = 5;
+    float salary_from = 6;
+    float salary_to = 7;
+    string working_styles = 8;
+    string working_types = 9;
+    string phone_number = 10;
+    string location = 11;
+    int64 view_count = 12;
+}
+
+message VacanciesCreateReq{
+    string publisher_id = 1;
+    string title = 2;
+    string description = 3;
+    string status = 4;
+    float salary_from = 5;
+    float salary_to = 6;
+    string working_styles = 7;
+    string working_types = 8;
+    string phone_number = 9;
+    string location = 10;
+    int64 view_count = 11;
+}
+
+message VacanciesGetAllRes{
+    repeated VacanciesRes vacancies = 1;
+}
+
+message VacanciesUpdateReq{
+    VacanciesCreateReq vacancy = 1;
+    string id = 2;
+}
+
+message VacanciesGetAllReq{
+    float salary_from = 1;
+    float salary_to = 2;
+    string status = 3;
+    Filter page = 4;
+}

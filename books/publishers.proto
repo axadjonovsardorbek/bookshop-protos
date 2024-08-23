@@ -8,7 +8,7 @@ import "common2.proto";
 
 service PublishersService{
     rpc Create(PublishersRes) returns(Void);
-    rpc GetById(ById) returns(PublishersGetByIdRes);
+    rpc GetById(ById) returns(PublishersRes);
     rpc GetAll(PublishersGetAllReq) returns(PublishersGetAllRes);
     rpc Update(PublishersUpdateReq) returns(Void);
     rpc Delete(ById) returns(Void);
@@ -27,10 +27,6 @@ message PublishersCreateReq{
     string email = 2;
     string phone_number = 3;
     string address = 4;
-}
-
-message PublishersGetByIdRes{
-    PublishersRes publishers = 1;
 }
 
 message PublishersGetAllRes{

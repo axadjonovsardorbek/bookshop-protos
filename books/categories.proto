@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option go_package = "genproto/books";
+
+package books;
+
+import "common2.proto";
+
+service CategoriesService{
+    rpc Create(CategoriesRes) returns(Void);
+    rpc GetById(ById) returns(CategoriesRes);
+    rpc GetAll(CategoriesGetAllReq) returns(CategoriesGetAllRes);
+    rpc Update(CategoriesUpdateReq) returns(Void);
+    rpc Delete(ById) returns(Void);
+}
+
+message CategoriesRes{
+    string id = 1;
+    string name = 2;
+    string description = 3;
+}
+
+message CategoriesCreateReq{
+    string name = 1;
+    string description = 2;
+}
+
+message CategoriesGetAllRes{
+    repeated CategoriesRes categories = 1;
+}
+
+message CategoriesUpdateReq{
+    CategoriesRes category = 1;
+}
+
+message CategoriesGetAllReq{
+    string name = 1;
+    string description = 2;
+    Filter page = 3;
+}

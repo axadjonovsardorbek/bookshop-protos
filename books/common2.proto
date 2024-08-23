@@ -13,3 +13,11 @@ message ById{
 message Filter{
     int32 page = 1;
 }
+
+message UsersRes{
+    string id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string email = 4;
+    string phone_number = 5;
+}

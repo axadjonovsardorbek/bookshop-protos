@@ -8,7 +8,7 @@ import "common2.proto";
 
 service TranslatorsService{
     rpc Create(TranslatorsRes) returns(Void);
-    rpc GetById(ById) returns(TranslatorsGetByIdRes);
+    rpc GetById(ById) returns(TranslatorsRes);
     rpc GetAll(TranslatorsGetAllReq) returns(TranslatorsGetAllRes);
     rpc Update(TranslatorsUpdateReq) returns(Void);
     rpc Delete(ById) returns(Void);
@@ -23,10 +23,6 @@ message TranslatorsRes{
 message TranslatorsCreateReq{
     string name = 1;
     string surname = 2;
-}
-
-message TranslatorsGetByIdRes{
-    TranslatorsRes translators = 1;
 }
 
 message TranslatorsGetAllRes{
